@@ -28,6 +28,11 @@ with OwonPSU("/dev/ttyUSB0") as opsu:
 ```python
 from owon_psu import OwonPSU
 
+try:
+    opsu.open()
+except:
+    exit()
+
 opsu = OwonPSU("/dev/ttyUSB0")
 print("Identity:", opsu.read_identity())
 print("Voltage:", opsu.measure_voltage())

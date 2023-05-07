@@ -53,18 +53,33 @@ class OwonPSU:
 
   def measure_current(self):
     return float(self._cmd("MEASure:CURRent?"))
-
+  
+  def measure_power(self):
+    return float(self._cmd("MEASure:POWer?"))
+  
   def set_voltage(self, voltage):
     return self._silent_cmd(f"VOLTage {voltage:.3f}")
 
+  def get_setpoint_voltage(self):
+    return float(self._cmd("VOLTage?"))
+  
   def set_current(self, current):
     return self._silent_cmd(f"CURRent {current:.3f}")
+  
+  def get_setpoint_current(self):
+    return float(self._cmd("CURRent?"))
 
   def set_voltage_limit(self, voltage):
     return self._silent_cmd(f"VOLTage:LIMit {voltage:.3f}")
+  
+  def get_voltage_limit(self):
+    return float(self._cmd(f"VOLTage:LIMit?"))
 
   def set_current_limit(self, current):
     return self._silent_cmd(f"CURRent:LIMit {current:.3f}")
+
+  def get_current_limit(self):
+    return float(self._cmd("CURRent:LIMit?"))
 
   def get_output(self):
     ret = self._cmd(f"OUTPut?")
